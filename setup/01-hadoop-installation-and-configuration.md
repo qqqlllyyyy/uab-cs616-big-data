@@ -51,6 +51,7 @@ Only consider the configuration for the second mode here (nothing to do for 1st 
 Copy all configuration files (`*-site.xml`) to a new directory and set env variable `HADOOP_CONF_DIR`:
 
 ```bash
+# Move xml configure files to a different directory
 cd ~/Documents/Hadoop/hadoop-3.1.1/etc/
 mkdir hadoop_conf
 cp hadoop/*-site.xml hadoop_conf/
