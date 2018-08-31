@@ -213,3 +213,13 @@ export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
 export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib"
 export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 ```
+
+Create a home directory for yourself:
+```bash
+hadoop fs -mkdir -p /usr/$USER
+# Now we can make sure whether we created the folder:
+hadoop fs -ls /usr/
+# Output:
+Found 1 items
+drwxr-xr-x   - liyuq supergroup          0 2018-08-30 19:07 /usr/liyuq
+```
