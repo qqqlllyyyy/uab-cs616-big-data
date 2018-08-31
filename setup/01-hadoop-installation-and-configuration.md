@@ -5,6 +5,7 @@
     * [Modify XML Files](#21-modify-xml-files)
     * [Configure SSH](#22-configure-ssh)
     * [Start & Stop Daemons](#23-start--stop-daemons)
+3. [Troubleshooting](#3-troubleshooting)
 
 ## 1. Installation
 
@@ -20,6 +21,7 @@ Note that there is still some issues for Hadoop to work with Java 9, be sure to 
 
 * https://blog.csdn.net/ChlatZed/article/details/78858100
 * https://github.com/highsource/jsonix-schema-compiler/issues/81
+* https://www.jianshu.com/p/d19ce17234b7
 * https://stackoverflow.com/questions/44427653/hadoop-error-starting-resourcemanager-and-nodemanager
 
 Go to Hadoop release page [http://hadoop.apache.org/releases.html](http://hadoop.apache.org/releases.html) and download the newest release:
@@ -222,4 +224,30 @@ hadoop fs -ls /usr/
 # Output:
 Found 1 items
 drwxr-xr-x   - liyuq supergroup          0 2018-08-30 19:07 /usr/liyuq
+```
+
+## 3. Troubleshooting
+
+Ref: http://www.4e00.com/blog/java/2016/01/26/unable-to-load-native-hadoop-library.html
+
+This message appears when we boot up hadoop:
+```
+WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+```
+
+We can use the command `hadoop checknative` to check native status:
+
+```bash
+hadoop checknative
+# Output:
+2018-08-30 19:16:45,714 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Native library checking:
+hadoop:  false
+zlib:    false
+zstd  :  false
+snappy:  false
+lz4:     false
+bzip2:   false
+openssl: false
+ISA-L:   false
 ```
