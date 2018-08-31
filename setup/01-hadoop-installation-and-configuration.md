@@ -1,14 +1,14 @@
 # Hadoop Installation and Configuration
 
-1. [Installation](#)
-2. [Configuration](#)
-    * [Modify XML Files](#)
-    * [Configure SSH](#)
-    * [Start & Stop Daemons](#)
-
-Ref: [Hadoop Installation on Mac OS X](https://isaacchanghau.github.io/post/install_hadoop_mac/)
+1. [Installation](#1-installation)
+2. [Configuration](#2-configuration)
+    * [Modify XML Files](#21-modify-xml-files)
+    * [Configure SSH](#22-configure-ssh)
+    * [Start & Stop Daemons](#23-start--stop-daemons)
 
 ## 1. Installation
+
+Ref: [Hadoop Installation on Mac OS X](https://isaacchanghau.github.io/post/install_hadoop_mac/)
 
 First make sure we have java installed.
 ```bash
