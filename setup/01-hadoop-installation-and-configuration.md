@@ -16,6 +16,12 @@ First make sure we have java installed.
 java -version
 ```
 
+Note that there is still some issues for Hadoop to work with Java 9, be sure to use a Java 8 path. Refs:
+
+* https://blog.csdn.net/ChlatZed/article/details/78858100
+* https://github.com/highsource/jsonix-schema-compiler/issues/81
+* https://stackoverflow.com/questions/44427653/hadoop-error-starting-resourcemanager-and-nodemanager
+
 Go to Hadoop release page [http://hadoop.apache.org/releases.html](http://hadoop.apache.org/releases.html) and download the newest release:
 
 ![01](images/01-01.png "01")
@@ -161,6 +167,19 @@ stop-yarn.sh
 stop-dfs.sh # stop HDFS service
 ```
 
+You can check processes are running with the command `jps`:
+```bash
+jps
+# Expected Output:
+41777 NameNode
+41106 NodeManager
+43170 Jps
+43156 JobHistoryServer
+42166 ResourceManager
+41880 DataNode
+24046
+```
+
 Output for `start-dfs.sh` should be something like:
 ```
 Starting namenodes on [localhost]
@@ -173,3 +192,24 @@ Starting secondary namenodes [...xxx...]
 It means the local service launched successfully, then open Resource Manager in browser through the link http://localhost:50070 (**changed to port 9870 for Hadoop 3!**, ref: https://stackoverflow.com/questions/19641326/http-localhost50070-does-not-work-hadoop), you can see the following page:
 
 ![04](images/01-04.png "04")
+
+You should also have access to the resource manager web ui (http://localhost:8088/) and history server web ui(http://localhost:19888/):
+
+![05](images/01-05.png "05")
+
+![06](images/01-06.png "06")
+
+Here is my `~/.bash_profile` after several updates. Feel free to move hadoop-related commands to `~/.bashrc`:
+
+```bash
+export PATH=$BRAZIL_CLI_BIN:$PATH
+export PATH=$PATH:/apollo/env/SDETools/bin
+export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:/Users/liyuq/bin
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/
+export HADOOP_HOME=~/Documents/Hadoop/hadoop-3.1.1
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop/
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib"
+export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+```
